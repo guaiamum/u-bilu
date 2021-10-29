@@ -1,21 +1,15 @@
 import Person from "./Person";
-import { v4 as uuid } from "uuid";
+import type { Person as PersonType } from "./Person";
+
 import { useRef } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { add } from "./peopleSlice";
 
-export const peopleArray = [
-  { id: "0ab", name: "Rodrigo" },
-  { id: "1cd", name: "Cruela" },
-];
+type PeopleListProps = { people: PersonType[], blockListIds?: string[] };
 
-const addPerson = ({ name }) => {
-  peopleArray.push({
-    id: uuid(),
-    name,
-  });
-};
-
-export const WithAddButton = (props) => {
-  const inputRef = useRef();
+export const WithAddButton: React.FC<PeopleListProps> = (props) => {
+  const inputRef = useRef<HTMLInputElement>();
+  const dispatch = useAppDispatch()
   return (
     <PeopleList {...props}>
       <input
@@ -28,7 +22,7 @@ export const WithAddButton = (props) => {
       <button
         className="p-3 font-bold"
         onClick={() => {
-          addPerson({ name: inputRef.current.value });
+          dispatch(add({ id: null, name: inputRef.current.value }));
         }}
       >
         +
@@ -37,7 +31,7 @@ export const WithAddButton = (props) => {
   );
 };
 
-const PeopleList = ({ people = peopleArray, blockListIds = [], children }) => {
+const PeopleList: React.FC<PeopleListProps> = ({ people, blockListIds = [], children }) => {
   return (
     <section className="border-t-2 border-opacity-70 border-gray-400 m-2">
       {people

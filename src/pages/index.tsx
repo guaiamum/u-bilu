@@ -1,9 +1,8 @@
-import PeopleList, {
-  WithAddButton,
-  peopleArray,
-} from "../components/People/PeopleList";
+import { useAppSelector } from "../app/hooks";
+import PeopleList, { WithAddButton } from "../features/people/PeopleList";
+import { selectAllPeople, selectPersonById } from "../features/people/peopleSlice";
 
-const intlArgs = [
+const intlArgs: any = [
   [],
   {
     day: "numeric",
@@ -14,15 +13,16 @@ const intlArgs = [
 
 const tripNoCopies = ["IDA", "VOLTA"];
 
-export default function Home({
+export default function Trip({
   date = Date.now(),
   tripNo = 0,
   peopleIds = ["0ab"],
 }) {
+  const people = useAppSelector(selectAllPeople)
+  const getPerson = useAppSelector(selectPersonById)
+
   const humanDate = Intl.DateTimeFormat(...intlArgs).format(date);
-  const peopleInTripInfo = peopleIds.map((personId) =>
-    peopleArray.find(({ id }) => id === personId)
-  );
+  const peopleInTripInfo = peopleIds.map(getPerson);
 
   return (
     <main className="h-screen bg-gray-800 text-gray-300 text-center p-4">
@@ -31,7 +31,7 @@ export default function Home({
 
       <PeopleList people={peopleInTripInfo} />
 
-      <WithAddButton blockListIds={peopleIds} />
+      <WithAddButton people={people} blockListIds={peopleIds} />
     </main>
   );
 }

@@ -1,12 +1,15 @@
 
+import "../styles/globals.css";
+
+import { Provider as ReduxProvider } from 'react-redux'
 import type { AppProps } from 'next/app'
 import Head from "next/head";
 
-import "../styles/globals.css";
+import store from '../app/store'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <ReduxProvider store={store}>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -43,6 +46,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
-    </>
+    </ReduxProvider>
   );
 }

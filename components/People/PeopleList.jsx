@@ -24,7 +24,7 @@ export const WithAddButton = (props) => {
         name="new-person"
         className="bg-transparent border-b-2"
         ref={inputRef}
-        />
+      />
       <button
         className="p-3 font-bold"
         onClick={() => {
@@ -39,11 +39,11 @@ export const WithAddButton = (props) => {
 
 const PeopleList = ({ people = peopleArray, blockListIds = [], children }) => {
   return (
-    <section class="border-t-2 border-opacity-70 border-gray-400 m-2">
+    <section className="border-t-2 border-opacity-70 border-gray-400 m-2">
       {people
         .filter(({ id }) => !blockListIds.includes(id))
         .map((person) => {
-          return <Person {...person} />;
+          return <Person key={person.id} {...person} />;
         })}
       {children}
     </section>

@@ -1,5 +1,5 @@
 const Person = ({ id, name }) => {
-  return <article key={id}>{name}</article>;
+  return <article>{name}</article>;
 };
 
 export default Person;

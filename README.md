@@ -1,9 +1,8 @@
-# Progressive Web App Example
+# U-Bilu
 
-This example uses [`next-pwa`](https://github.com/shadowwalker/next-pwa) to create a progressive web app (PWA) powered by [Workbox](https://developers.google.com/web/tools/workbox/).
+Simple carpooling tracker for personal ride sharing.
 
-## Deploy your own
+## Control who travelled with you
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app&project-name=progressive-web-app&repository-name=progressive-web-app)
+No more group messages to ask who was in the car each day this last month.
+The driver can do this with a few taps at the end of the journey.

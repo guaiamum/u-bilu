@@ -1,12 +1,10 @@
-import styles from '../styles/Home.module.css'
+import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home({ date = Date.now() }) {
+  const humanDate = Intl.DateTimeFormat("en-US").format(date);
   return (
-      <main className="h-screen bg-gray-800">
-        <h1 className="text-2xl text-gray-300">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-      </main>
-  )
+    <main className="h-screen bg-gray-800 grid justify-center">
+      <h1 className="text-2xl font-semibold text-gray-300">Today - {humanDate}</h1>
+    </main>
+  );
 }

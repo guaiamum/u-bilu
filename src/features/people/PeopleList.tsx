@@ -1,11 +1,11 @@
 import Person from "./Person";
 import type { Person as PersonType } from "./Person";
 
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { add } from "./peopleSlice";
 
-type PeopleListProps = { people: PersonType[], blockListIds?: string[] };
+type PeopleListProps = { people: PersonType[], blockListIds?: string[], sideActionCTA: ReactNode, actionCbx: (personId: string) => void };
 
 export const WithAddButton: React.FC<PeopleListProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>();
@@ -31,13 +31,23 @@ export const WithAddButton: React.FC<PeopleListProps> = (props) => {
   );
 };
 
-const PeopleList: React.FC<PeopleListProps> = ({ people, blockListIds = [], children }) => {
+const PeopleList: React.FC<PeopleListProps> = ({ people, blockListIds = [], sideActionCTA, actionCbx, children }) => {
   return (
     <section className="border-t-2 border-opacity-70 border-gray-400 m-2">
       {people
         .filter(({ id }) => !blockListIds.includes(id))
         .map((person) => {
-          return <Person key={person.id} {...person} />;
+          return <div key={person.id} className="flex items-center">
+            <Person {...person} />
+            <button
+              className="p-3 font-bold"
+              onClick={() => {
+                actionCbx(person.id);
+              }}
+            >
+              {sideActionCTA}
+            </button>
+          </div>;
         })}
       {children}
     </section>

@@ -42,6 +42,6 @@ export const { add, remove } = peopleSlice.actions
 
 export const selectAllPeople = (state: AppState) => state.people.value
 
-export const selectPersonById =(state: AppState) =>  (personId) => state.people.value.find(({ id }) => id === personId)
+export const selectPersonById = (state: AppState) => (personId) => state.people.value.find(({ id }) => id === personId)
 
 export default peopleSlice.reducer

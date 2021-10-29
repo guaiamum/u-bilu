@@ -1,10 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 import peopleReducer from '../features/people/peopleSlice'
+import tripReducer from '../features/trip/tripSlice'
 
 export function makeStore() {
   return configureStore({
-    reducer: { people: peopleReducer },
+    reducer: { people: peopleReducer, trips: tripReducer },
   })
 }
 

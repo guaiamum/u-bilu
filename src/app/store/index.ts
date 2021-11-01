@@ -1,15 +1,17 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
-import peopleReducer from '../features/people/peopleSlice'
-import tripReducer from '../features/trip/tripSlice'
+import { ignorePersistActionsiddleware, persistedReducer, persistStore } from './persist'
 
 export function makeStore() {
   return configureStore({
-    reducer: { people: peopleReducer, trips: tripReducer },
+    reducer: persistedReducer,
+    middleware: ignorePersistActionsiddleware
   })
 }
 
 const store = makeStore()
+
+export const persistor = persistStore(store)
 
 export type AppState = ReturnType<typeof store.getState>
 

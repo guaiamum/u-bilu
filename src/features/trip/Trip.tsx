@@ -45,16 +45,19 @@ const Trip: React.FC<Trip> = ({
   }
 
   return (
-    <main className="h-screen bg-gray-800 text-gray-300 text-center p-4">
+    <main className="flex-1 bg-gray-800 text-gray-300 text-center p-4">
       <h1 className="text-4xl font-semibold">{getHumanDate(date)}</h1>
       <h2 className="text-2xl">{tripNoCopies[tripNo]}</h2>
 
-      {/* People in trip */}
-      <PeopleList people={peopleInTripInfo} onPersonClick={onRemovePersonFromTrip} sideAddornment="-" />
+      <div className="grid grid-rows-3">
 
-      {/* People in store */}
-      <div className="mt-6" />
-      <WithAddButton people={people} blockListIds={peopleIds} onPersonClick={onAddPersonToTrip} sideAddornment="+" />
+        {/* People in trip */}
+        <PeopleList people={peopleInTripInfo} onPersonClick={onRemovePersonFromTrip} sideAddornment="-" />
+
+        {/* People in store */}
+        <div className="mt-6" />
+        <WithAddButton people={people} blockListIds={peopleIds} onPersonClick={onAddPersonToTrip} sideAddornment="+" />
+      </div>
     </main>
   );
 }

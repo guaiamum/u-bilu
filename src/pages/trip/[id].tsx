@@ -14,9 +14,7 @@ export default function TripPage() {
   const trip = useAppSelector(selectTripById(id))
 
   return (trip ?
-    <main className="h-screen bg-gray-800 text-gray-300 text-center p-4">
-      <Trip {...trip} />
-    </main>
+    <Trip {...trip} />
     : <>No trip found</>
   );
 }

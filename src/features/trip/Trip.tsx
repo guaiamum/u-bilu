@@ -46,9 +46,12 @@ const Trip: React.FC<Trip> = ({
       <h1 className="text-4xl font-semibold">Today - {humanDate}</h1>
       <h2 className="text-2xl">{tripNoCopies[tripNo]}</h2>
 
-      <PeopleList people={peopleInTripInfo} sideActionCTA={'-'} actionCbx={onRemovePersonFromTrip} />
+      {/* People in trip */}
+      <PeopleList people={peopleInTripInfo} onPersonClick={onRemovePersonFromTrip} sideAddornment="-" />
 
-      <WithAddButton people={people} blockListIds={peopleIds} sideActionCTA={'+'} actionCbx={onAddPersonToTrip} />
+      {/* People in store */}
+      <div className="mt-6" />
+      <WithAddButton people={people} blockListIds={peopleIds} onPersonClick={onAddPersonToTrip} sideAddornment="+" />
     </main>
   );
 }

@@ -4,7 +4,7 @@ export type Person = {
 }
 
 const Person: React.FC<Person> = ({ id, name }) => {
-  return <article>{name}</article>;
+  return <article className="">{name}</article>;
 };
 
 export default Person;

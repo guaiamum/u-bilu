@@ -22,11 +22,9 @@ export const peopleSlice = createSlice({
   reducers: {
     add: (state, action: PayloadAction<Person>) => {
       const newPerson = { ...action.payload, id: uuid() };
-      console.log('newPerson :>> ', newPerson);
-      state.value.push(newPerson);
+      state.value.push(newPerson)
     },
     remove: (state, action: PayloadAction<string>) => {
-      console.log('action.payload :>> ', action.payload);
       const idxOfPersonToRemove = state.value.findIndex(({ id }) => {
         return id === action.payload
       })

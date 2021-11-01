@@ -23,12 +23,33 @@ const initialState: TripsState = {
   status: 'idle',
 }
 
+/**
+ * Gets the trips of the requested day,
+ * if none found, returns empty array
+ * @param {number} date
+ * @returns {Array}
+ */
+const getTripsOfDay = (allTrips, date = Date.now()) => {
+  const reqDateString = new Date(date).toDateString()
+  return allTrips.map((trip) => {
+    const isSameDay = new Date(trip.date).toDateString() === reqDateString
+    if (isSameDay) {
+      return trip;
+    }
+  })
+}
+
 export const tripsSlice = createSlice({
   name: 'trips',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Trip>) => {
-      const newTrip = { ...action.payload, id: uuid() };
+      const newTrip = {
+        ...action.payload,
+        id: uuid(),
+        tripNo: getTripsOfDay(state.value).length
+      };
+
       state.value.push(newTrip);
     },
     remove: (state, action: PayloadAction<string>) => {

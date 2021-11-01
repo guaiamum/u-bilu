@@ -11,10 +11,10 @@ export interface TripsState {
 
 export const initialTrips: Trip[] = [
   {
-    id: "1a",
+    id: uuid(),
     date: Date.now(),
     tripNo: 0,
-    peopleIds: ["0ab"]
+    peopleIds: []
   },
 ];
 

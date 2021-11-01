@@ -12,6 +12,10 @@ const intlArgs: any = [
   },
 ];
 
+type getHumanDateType = (date: number) => string
+
+export const getHumanDate: getHumanDateType = (date) => Intl.DateTimeFormat(...intlArgs).format(date);
+
 const tripNoCopies = ["IDA", "VOLTA"];
 
 export type Trip = {
@@ -31,7 +35,6 @@ const Trip: React.FC<Trip> = ({
   const people = useAppSelector(selectAllPeople)
   const getPersonInfo = useAppSelector(selectPersonById)
 
-  const humanDate = Intl.DateTimeFormat(...intlArgs).format(date);
   const peopleInTripInfo = peopleIds.map(getPersonInfo);
 
   const onRemovePersonFromTrip = (personId) => {
@@ -43,7 +46,7 @@ const Trip: React.FC<Trip> = ({
 
   return (
     <main className="h-screen bg-gray-800 text-gray-300 text-center p-4">
-      <h1 className="text-4xl font-semibold">Today - {humanDate}</h1>
+      <h1 className="text-4xl font-semibold">{getHumanDate(date)}</h1>
       <h2 className="text-2xl">{tripNoCopies[tripNo]}</h2>
 
       {/* People in trip */}

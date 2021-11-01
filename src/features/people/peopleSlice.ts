@@ -9,10 +9,7 @@ export interface PeopleState {
   status: 'idle' | 'loading' | 'failed'
 }
 
-export const initialPeople: Person[] = [
-  { id: "0ab", name: "Rodrigo" },
-  { id: "1cd", name: "Cruela" },
-];
+export const initialPeople: Person[] = [];
 
 const initialState: PeopleState = {
   value: initialPeople,

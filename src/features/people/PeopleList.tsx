@@ -1,7 +1,7 @@
 import Person from "./Person";
 import type { Person as PersonType } from "./Person";
 
-import { ReactNode, useRef } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { add } from "./peopleSlice";
 
@@ -9,6 +9,7 @@ type PeopleListProps = { people: PersonType[], blockListIds?: string[], onPerson
 
 export const WithAddButton: React.FC<PeopleListProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>();
+  const [value, setValue] = useState('')
   const dispatch = useAppDispatch()
   return (
     <PeopleList {...props}>
@@ -17,12 +18,17 @@ export const WithAddButton: React.FC<PeopleListProps> = (props) => {
         placeholder="Enter a name..."
         name="new-person"
         className="bg-transparent border-b-2"
+        value={value}
         ref={inputRef}
+        onChange={()=>{
+          setValue(inputRef.current.value)
+        }}
       />
       <button
         className="p-3 font-bold"
         onClick={() => {
           dispatch(add({ id: null, name: inputRef.current.value }));
+          setValue('')
         }}
       >
         +
